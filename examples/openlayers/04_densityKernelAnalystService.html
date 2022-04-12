@@ -1,0 +1,141 @@
+<!--********************************************************************
+* Copyright© 2000 - 2021 SuperMap Software Co.Ltd. All rights reserved.
+*********************************************************************-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="resources.title_densityAnalystService"></title>
+    <script type="text/javascript" src="../js/include-web.js"></script>
+    <script type="text/javascript" src="../../dist/ol/include-ol.js"></script>
+</head>
+<body style=" margin: 0;overflow: hidden;background: #fff;width: 100%;height:100%; position: absolute;top: 0;">
+<div id="map" style="width: 100%;height:100%"></div>
+<script type="text/javascript">
+    var map, options, densityAnalystResult,
+        baseUrl = (window.isLocal ? window.server : "https://iserver.supermap.io")+"/iserver/services/map-changchun/rest/maps/长春市区图",
+        serviceUrl = (window.isLocal ? window.server : "https://iserver.supermap.io")+"/iserver/services/spatialanalyst-changchun/restjsr/spatialanalyst";
+    var extent = [48.4, -7668.25, 8958.85, -55.58];
+    var projection = new ol.proj.Projection({
+        code:'',
+        extent: extent,
+        units: 'm'
+    });
+    new ol.supermap.MapService(baseUrl).getMapInfo(function (serviceResult) {
+        var mapJSONObj = serviceResult.result;
+        map = new ol.Map({
+            target: 'map',
+            controls: ol.control.defaults({attributionOptions: {collapsed: false}})
+                .extend([new ol.supermap.control.Logo()]),
+            view: new ol.View({
+                center: [5000, -3700],
+                zoom: 2,
+                projection: projection,
+                multiWorld: true
+            })
+        });
+        options = ol.source.TileSuperMapRest.optionsFromMapJSON(baseUrl, mapJSONObj);
+        var layer = new ol.layer.Tile({
+            source: new ol.source.TileSuperMapRest(options)
+        });
+        map.addLayer(layer);
+        densityAnalystProcess();
+    });
+
+    function densityAnalystProcess() {
+        //创建点密度插值分析参数实例
+        var densityAnalystParameters = new SuperMap.DensityKernelAnalystParameters({
+            //指定数据集
+            dataset: "Railway@Changchun",
+            //指定范围
+            bounds: [3800, -3800, 8200, -2200],
+            //指定数据集中用于核密度分析的字段
+            fieldName: "SmLength",
+            searchRadius: 50, //Railway@Changchun的单位是米
+            // 结果数据集名称
+            resultGridName: "KernelDensity_Result",
+            deleteExistResultDataset: true
+        });
+        new ol.supermap.SpatialAnalystService(serviceUrl).densityAnalysis(densityAnalystParameters, function (serviceResult) {
+            densityAnalystResult = serviceResult.result;
+            //用栅格专题图展示分析结果
+            showAnalysisResult_ThemeGridRange();
+        });
+
+        //构造栅格专题图
+        function showAnalysisResult_ThemeGridRange() {
+            var color1 = new SuperMap.ServerColor(255, 212, 170),
+                color2 = new SuperMap.ServerColor(255, 127, 0),
+                color3 = new SuperMap.ServerColor(191, 95, 0),
+                color4 = new SuperMap.ServerColor(255, 0, 0),
+                color5 = new SuperMap.ServerColor(191, 0, 0);
+            var themeGridRangeIteme1 = new SuperMap.ThemeGridRangeItem({
+                    start: 0,
+                    end: 0.05,
+                    color: color1
+                }),
+                themeGridRangeIteme2 = new SuperMap.ThemeGridRangeItem({
+                    start: 0.05,
+                    end: 5,
+                    color: color2
+                }),
+                themeGridRangeIteme3 = new SuperMap.ThemeGridRangeItem({
+                    start: 5,
+                    end: 10,
+                    color: color3
+                }),
+                themeGridRangeIteme4 = new SuperMap.ThemeGridRangeItem({
+                    start: 10,
+                    end: 100,
+                    color: color4
+                }),
+                themeGridRangeIteme5 = new SuperMap.ThemeGridRangeItem({
+                    start: 100,
+                    end: 360,
+                    color: color5
+                });
+            var themeGridRange = new SuperMap.ThemeGridRange({
+                reverseColor: false,
+                rangeMode: SuperMap.RangeMode.EQUALINTERVAL,
+                //栅格分段专题图子项数组
+                items: [themeGridRangeIteme1,
+                    themeGridRangeIteme2,
+                    themeGridRangeIteme3,
+                    themeGridRangeIteme4,
+                    themeGridRangeIteme5
+                ]
+            });
+
+            var themeParameters = new SuperMap.ThemeParameters({
+                //制作专题图的数据集
+                datasetNames: [densityAnalystResult.dataset.split('@')[0]],
+                dataSourceNames: ["Changchun"],
+                joinItems: null,
+                themes: [themeGridRange]
+            });
+
+            new ol.supermap.ThemeService(baseUrl).getThemeInfo(themeParameters, function (serviceResult) {
+                var result = serviceResult.result;
+                if (result && result.newResourceID) {
+                    var themeLayer = new ol.layer.Tile({
+                        source: new ol.source.TileSuperMapRest({
+                            url: baseUrl,
+                            noWrap: true,
+                            cacheEnabled: false,
+                            transparent: true,
+                            layersID: result.newResourceID,
+                            tileGrid: new ol.tilegrid.TileGrid({
+                                extent: extent,
+                                resolutions: options.tileGrid.getResolutions()
+                            }),
+                            transparent: true
+                        })
+                    });
+                    map.addLayer(themeLayer);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

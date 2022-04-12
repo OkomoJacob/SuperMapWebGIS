@@ -1,0 +1,162 @@
+<!--********************************************************************
+* Copyright© 2000 - 2021 SuperMap Software Co.Ltd. All rights reserved.
+*********************************************************************-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="resources.title_GraphBar"></title>
+    <script type="text/javascript" src="../js/include-web.js"></script>
+    <script type="text/javascript" include="echarts" src="../../dist/ol/include-ol.js"></script>
+</head>
+<body style=" margin: 0;overflow: hidden;background: #fff;width: 100%;height:100%; position: absolute;top: 0;">
+<div id="map" style="width: 100%;height:100%"></div>
+<div id="popup"></div>
+<script type="text/javascript">
+var host = window.isLocal ? window.server : "https://iserver.supermap.io";
+    var resultLayer;
+    var map = new ol.Map({
+        target: 'map',
+        controls: ol.control.defaults({attributionOptions: {collapsed: false}})
+            .extend([new ol.supermap.control.Logo()]),
+        view: new ol.View({
+            center: [105.2, 31.6],
+            zoom: 5,
+            projection: 'EPSG:4326',
+            multiWorld: true
+        }),
+        layers: [new ol.layer.Tile({
+            source: new ol.source.TileSuperMapRest({
+                url: host+"/iserver/services/map-world/rest/maps/World",
+            }),
+            projection: 'EPSG:4326'
+        })]
+    });
+    var popup = new ol.Overlay({
+        element: document.getElementById('popup'),
+        offset: [5, 5]
+    });
+    map.addOverlay(popup);
+    var option = {
+        legend: {
+            data: [resources.text_rainfall, resources.text_runoff],
+            align: 'left'
+        },
+        toolbox: {
+            feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                saveAsImage: {
+                    pixelRatio: 2
+                }
+            }
+        },
+        backgroundColor: '#fff',
+        tooltip: {},
+        xAxis: {
+            data: [resources.text_monday, resources.text_tuesday, resources.text_wednesday, resources.text_thursday, resources.text_friday, resources.text_saturday, resources.text_sunday],
+            silent: false,
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: 'bar',
+            type: 'bar',
+            animationDelay: function (idx) {
+                return idx * 10;
+            }
+        }, {
+            name: 'bar2',
+            type: 'bar',
+            animationDelay: function (idx) {
+                return idx * 10 + 100;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function (idx) {
+            return idx * 5;
+        }
+    };
+    var chart = echarts.init(document.createElement('div'), '', {
+        width: 500,
+        height: 300
+    });
+    chart.setOption(option);
+    query();
+    function query() {
+        clearLayer();
+        var queryService = new ol.supermap.QueryService(host+"/iserver/services/map-china400/rest/maps/China");
+        var param = new SuperMap.QueryBySQLParameters({
+            queryParams: [{
+                name: "China_ProCenCity_pt@China",
+                attributeFilter: "1 = 1"
+            }, {
+                name: "China_Capital_pt@China",
+                attributeFilter: "1 = 1"
+            }]
+        });
+        queryService.queryBySQL(param, function (serviceResult) {
+            var features = [];
+            for (var i = 0; i < serviceResult.result.recordsets.length; i++) {
+                var temp = (new ol.format.GeoJSON()).readFeatures(serviceResult.result.recordsets[i].features, {
+                    dataProjection: 'EPSG:3857',
+                    featureProjection: 'EPSG:4326'
+                });
+                features = features.concat(temp);
+            }
+            resultLayer = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    wrapX: false,
+                    features: features
+                })
+            });
+            map.addLayer(resultLayer);
+            var select = new ol.interaction.Select();
+            map.addInteraction(select);
+            select.on('select', function (e) {
+                if (this.getFeatures().getLength() > 0) {
+                    var city = this.getFeatures().item(0).getProperties().NAME;
+                    var data1 = [];
+                    var data2 = [];
+                    for (var i = 0; i < 7; i++) {
+                        var data = Math.random().toFixed(2);
+                        data1.push(data);
+                        data2.push(data * (Math.random() + 1.5));
+
+                    }
+                    chart.setOption({
+                        title: {
+                            text: city,
+                            subtext: resources.text_fictitiouData
+                        },
+                        series: [
+                            {
+                                name: resources.text_rainfall,
+                                data: data1,
+                            },
+                            {
+                                name: resources.text_runoff,
+                                data: data2,
+                            }
+                        ],
+                    });
+                    popup.setElement(chart.getDom());
+                    var coordinate = e.mapBrowserEvent.coordinate;
+                    popup.setPosition(coordinate);
+                } else {
+                    popup.setPosition(undefined);
+                }
+            });
+        });
+    }
+    function clearLayer() {
+        if (resultLayer) {
+            map.removeLayer(resultLayer);
+        }
+    }
+</script>
+</body>
+</html>
