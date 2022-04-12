@@ -51,13 +51,13 @@ function clearDraw() {
 	map.removeInteraction(drawPolygon);
 	drawLayer.getSource().clear();
 	map.removeInteraction(drawPoint);
-	resultLayer.getSource().clear();
+	resultLayer.getSource().clear(); //clear early query result
 	overlay.setPosition(undefined);
 	map.removeOverlay(overlay);
-	currentFeature = null;
-	map.removeInteraction(modify);
-	map.removeInteraction(snap);
-	editLayer.getSource().clear();
+	// currentFeature = null;
+	// map.removeInteraction(modify);
+	// map.removeInteraction(snap);
+	// editLayer.getSource().clear();
 }
 
 function fullExtent() {
@@ -74,6 +74,7 @@ var vectorSource = new ol.source.Vector({
 	wrapX: false
 });
 
+// Highlight the feature under query
 resultLayer = new ol.layer.Vector({
 	source: vectorSource,
 	style: new ol.style.Style({
@@ -89,6 +90,7 @@ resultLayer = new ol.layer.Vector({
 
 map.addLayer(resultLayer);
 
+// Pop up window to show the attributes of query result
 var container = document.getElementById('popup'),
 	content = document.getElementById('popup-content');
 var overlay = new ol.Overlay(({
@@ -97,9 +99,10 @@ var overlay = new ol.Overlay(({
 	autoPanAnimation: {
 		duration: 250
 	},
-	offset: [0, -20]
+	offset: [0, -20] // Move the pop-up container 20px above query point
 }));
 
+// Spatial Query function
 function clickQuery() {
 	drawPoint = new ol.interaction.Draw({
 		source: drawLayer.getSource(),
@@ -112,18 +115,23 @@ function clickQuery() {
 
 		var param = new SuperMap.QueryByGeometryParameters({
 			queryParams: {
-				name: "building@CadastralData"
+				name: "Nairobi_Buildings@CadastralData"
 			},
 			geometry: evt.feature.values_.geometry
 		});
 		new ol.supermap.QueryService(url).queryByGeometry(param, function(serviceResult) {
+			console.log(serviceResult);
+			// Render result layer on the map.
 			var features = (new ol.format.GeoJSON()).readFeatures(serviceResult.result.recordsets[0].features);
 			vectorSource.addFeatures(features);
-
-			//add popup to show attributes
-			var feature = features[0];
+			
+			/* Pop up window to show the attributes of query result */
+			var feature = features[0]; // Obtain the 1st feature to query
 			currentFeature = feature;
 			var properties = feature.getProperties();
+			// console.log(properties);
+
+			/* Table to display pop-up spatial query results */
 			var contentHTML = '<table class="table table-bordered">';
 
 			$.each(properties, function(idx, obj) {
@@ -144,7 +152,7 @@ function clickQuery() {
 			content.innerHTML = contentHTML;
 			overlay.setPosition(evt.feature.values_.geometry.getCoordinates());
 			map.addOverlay(overlay);
-			currentFeature = feature;
+			//currentFeature = feature;
 
 		});
 	});
