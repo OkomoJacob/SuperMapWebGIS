@@ -36,10 +36,10 @@
 				<button type="button" class="btn btn-default" id="fullExtent" onclick="fullExtent()">
 					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 				</button>
-				<!-- 
 				<button type="button" class="btn btn-default" id="search" onclick="showInput()">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				</button>
+				<!-- 
 				<button type="button" class="btn btn-default" id="search" onclick="openScene()">
 					<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>  
 				</button> -->
@@ -65,10 +65,11 @@
 						<div class="form-group">
 							<label for="title">Landuse Type</label>
 							<select class="form-control" id="landuseType" style="width: 150px;">
-								<option>allotments</option>
-								<option>cemetery</option>
+								<!-- Obtain options from iDesktop attribute table -->
+								<option>cemetery </option>
 								<option>commercial</option>
 								<option>farmland</option>
+								<option>farmyard</option>
 								<option>forest</option>
 								<option>grass</option>
 								<option>health</option>
@@ -87,7 +88,7 @@
 						</div>
 					</div>
 					<button class="btn btn-primary" style="width:45%" id="query" onclick="queryLanduse()">Query</button>
-					<!-- <button class="btn btn-primary" style="width:45%" id="submit">Button2</button> -->
+					<button class="btn btn-primary" style="width:45%" id="submit">Submit</button>
 				</div>
 			</div>
 
@@ -140,6 +141,7 @@
 		<div id="popup-content"></div>
 	</div>
 
+	<!-- Div to search input and control visibility -->
 	<div class="form-group" id="inputPannel" style="position: absolute; top: 80px; right: 100px; display: none;">
 		<input type="keyWords" class="form-control" id="keyWordsInput" placeholder="Please input key words">
 	</div>
@@ -150,7 +152,7 @@
 	<!-- External JS start-->
 	<script type="text/javascript" src="static/map_functions/script.js"></script>
 	<script type="text/javascript" src="static/map_functions/toolbar.js"></script>
-	<script type="text/javascript" src="../js/GISContest/sideTab1.js"></script>
+	<script type="text/javascript" src="static/map_functions/query_land_use.js"></script>
 	<script type="text/javascript" src="../js/GISContest/edit.js"></script>
 	<script src="static/index.js"></script>
 	<!-- External JS End-->
