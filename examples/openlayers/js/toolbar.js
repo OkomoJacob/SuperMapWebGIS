@@ -5,18 +5,17 @@ var drawLayer = new ol.layer.Vector({
 })
 map.addLayer(drawLayer);
 
+// Measure linear distance on map
 function measureDistance() {
 	drawLine = new ol.interaction.Draw({
 		source: drawLayer.getSource(),
-		type: "LineString"
+		type: "LineString",
 	});
 	map.addInteraction(drawLine);
-
 
 	drawLine.on('drawend', function(evt) {
 		console.log(evt);
 		var distanceMeasureParam = new SuperMap.MeasureParameters(evt.feature.getGeometry());
-
 		new ol.supermap.MeasureService(url, {
 			measureMode: ""
 		}).measureDistance(distanceMeasureParam, function(serviceResult) {
@@ -32,7 +31,6 @@ function measureArea() {
 		type: "Polygon"
 	});
 	map.addInteraction(drawPolygon);
-
 
 	drawPolygon.on('drawend', function(evt) {
 		console.log(evt);
@@ -106,7 +104,6 @@ function clickQuery() {
 		type: "Point"
 	});
 	map.addInteraction(drawPoint);
-
 
 	drawPoint.on('drawend', function(evt) {
 		clearDraw();
