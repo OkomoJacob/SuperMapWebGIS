@@ -3,157 +3,26 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>GIS Contest</title>
+	<title>Jacob Training</title>
 	<!-- Include the bootstrap and JQuery for Supermap iClient from the javascript/-->
 	<script type="text/javascript" include="bootstrap,jquery,widgets.alert" src="../js/include-web.js"></script>
 	<!-- Include the openlayers source coede for Supermap iClient from the dist/-->
 	<script type="text/javascript" src="../../dist/ol/include-ol.js"></script>
+	<!-- External stying -->
+	<link rel="stylesheet" href="css/style.css">
 	<style>
-		.toolBar {
-			position: absolute;
-			right: 65px;
-			top: 8px;
-			text-align: center;
-			background: #FFF;
-			z-index: 1000;
-			border-radius: 4px;
-		}
-
-		.sidebar-config-wrap {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100vh;
-			width: 360px;
-			padding: 20px;
-			background: #2c2c2c;
-		}
-
-		.sidebar-config-wrap .panel-group .panel {
-			border-color: transparent;
-			background: transparent;
-			color: rgba(255, 255, 255, 0.6);
-		}
-
-		.sidebar-config-wrap .panel .panel-heading {
-			background: #383838;
-			color: rgba(255, 255, 255, 0.85);
-			border-color: #383838;
-			position: relative;
-		}
-
-		.sidebar-config-wrap .panel .panel-heading::before {
-			content: "";
-			height: 50%;
-			width: 2px;
-			background: #3394dc;
-			position: absolute;
-			top: 25%;
-			left: 0;
-			display: block;
-		}
-
-		.form-group {
-			overflow: hidden;
-		}
-
-		.sidebar-config-wrap .form-control,
-		.sidebar-config-wrap .btn-group {
-			width: 70%;
-			float: right;
-		}
-
-		.sidebar-config-wrap .form-group label {
-			margin-bottom: 0;
-			line-height: 34px;
-		}
-
-		.sidebar-config-wrap .btn-group {
-			display: block;
-			margin-bottom: 10px;
-
-		}
-
-		.sidebar-config-wrap .btn-group button {
-			width: 50%;
-			outline: none;
-		}
-
-		.sidebar-config-wrap .btn-group button:focus {
-			outline: none;
-		}
-
-		.sidebar-config-wrap .panel-title a {
-			width: 100%;
-			display: block;
-			text-decoration: none !important;
-			overflow: hidden;
-		}
-
-		.sidebar-config-wrap .panel-title a span.glyphicon {
-			float: right;
-		}
-
-		.sidebar-config-wrap .panel-title a[aria-expanded="true"] .glyphicon-chevron-down {
-			display: none;
-		}
-
-		.sidebar-config-wrap .panel-title a[aria-expanded="false"] .glyphicon-chevron-up {
-			display: none;
-		}
-
-		.sidebar-config-wrap .submit-btn-wrap {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 80px;
-			line-height: 80px;
-			border-top: 2px solid #323232;
-			text-align: center;
-		}
-
-		.sidebar-config-wrap #printBtn,
-		.sidebar-config-wrap .progress {
-			width: 80%;
-		}
-
-		.sidebar-config-wrap .progress {
-			margin: 30px auto 0;
-		}
-
-		/* Pop up to query buildings and land use */
-		.ol-popup {
-			position: absolute;
-			background-color: white;
-			-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-			filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-			padding: 15px;
-			border-radius: 10px;
-			border: 1px solid #cccccc;
-			bottom: 12px;
-			left: -150px;
-			width: 300px;
-		}
-
-		.keyWordsOptions {
-			position: absolute;
-			top: 120px;
-			right: 100px;
-			background-color: white;
-			display: none;
-		}
+		/* Linked externally */
 	</style>
 </head>
-
-<body style=" margin: 0;overflow: hidden;background: #fff;width: 100%;height:100%; position: absolute;top: 0;">
+<body>
 	<div id="map" style="width: 100%;height:100%"></div>
-
+	<!-- Toolbar div -->
 	<div>
 		<div class="panel panel-primary toolBar" id="toolBar">
 			<div class='panel-body content'>
+				<!-- 
 				<button type="button" class="btn btn-default" id="clickQuery" onclick="clickQuery()">
-					<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> -->
 				</button>
 				<button type="button" class="btn btn-default" id="measureDistance" onclick="measureDistance()">
 					<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
@@ -167,11 +36,12 @@
 				<button type="button" class="btn btn-default" id="fullExtent" onclick="fullExtent()">
 					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 				</button>
+				<!-- 
 				<button type="button" class="btn btn-default" id="search" onclick="showInput()">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				</button>
 				<button type="button" class="btn btn-default" id="search" onclick="openScene()">
-					<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>  -->
 				</button>
 			</div>
 		</div>
@@ -263,7 +133,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<!-- Side bar toolbar End-->
 
@@ -278,47 +147,10 @@
 	<div id="keyWordsOptions" class="keyWordsOptions">
 		<select multiple class="form-control" id="keyWordsTable"></select>
 	</div>
-	<!-- Add basemap to webpage -->
-	<script type="text/javascript">
-		var map, url = "http://localhost:8090/iserver/services/map-CadastralWorkSpace/rest/maps/CadastralMap";
-		map = new ol.Map({
-			target: 'map',
-			controls: ol.control.defaults({
-				attributionOptions: {
-					collapsed: false
-				}
-			})
-				.extend([new ol.supermap.control.Logo()]),
-			view: new ol.View({
-				center: [101.57, 3.06],
-				zoom: 15,
-				projection: 'EPSG:4326',
-				multiWorld: true
-			})
-		});
-		//create bingmap layer, and add it before the iServer service layer
-		var bingMapLayer = new ol.layer.Tile({
-			visible: true,
-			preload: Infinity,
-			source: new ol.source.BingMaps({
-				key: 'AkOyUpgDCoz063AWW1WfHnxp5222UBdxLOp1XvRv0tuebQnr2S7UcZkiLgME7gX0',
-				imagerySet: 'Aerial'
-			})
-		});
-		map.addLayer(bingMapLayer);
-
-		var layer = new ol.layer.Tile({
-			source: new ol.source.TileSuperMapRest({
-				url: url,
-				wrapX: true,
-				cacheEnabled: false
-			}),
-			projection: 'EPSG:4326'
-		});
-		map.addLayer(layer);
-		map.addControl(new ol.supermap.control.ScaleLine());
-	</script>
-	<script type="text/javascript" src="../js/GISContest/toolbar.js"></script>
+	<!-- External JS start-->
+	<script src="js/script.js"></script>
+	<!-- External JS End-->
+	<script type="text/javascript" src="js/toolbar.js"></script>
 	<script type="text/javascript" src="../js/GISContest/sideTab1.js"></script>
 	<script type="text/javascript" src="../js/GISContest/edit.js"></script>
 </body>
