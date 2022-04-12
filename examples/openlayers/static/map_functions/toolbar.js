@@ -158,6 +158,7 @@ function clickQuery() {
 	});
 }
 
+/* Search input */
 function showInput(){
 	$("#inputPannel").toggle();
 	$("#keyWordsOptions").hide();
@@ -165,12 +166,14 @@ function showInput(){
 
 $("#keyWordsInput").bind("input propertychange", function() {
 	clearDraw();
+	// Query on key enter
 	var inputValue = $("#keyWordsInput").val();
+	console.log(inputValue);
 	
 	var param = new SuperMap.QueryBySQLParameters({
 		queryParams: {
 			name: "building@CadastralData",
-			attributeFilter: "name LIKE '%" + inputValue + "%'"
+			attributeFilter: "name LIKE '%" + inputValue + "%'" //Append % bf and after the keyWord
 		}
 	});
 	console.log(param);
@@ -182,6 +185,7 @@ $("#keyWordsInput").bind("input propertychange", function() {
 		$('#keyWordsTable').empty();
 		var optionHTML = "";
 
+		/*Loop as the query runs*/
 		for (var i = 0; i < features.length; i++) {
 			var text = features[i].values_.name;
 			var value = features[i].values_.SmID;
