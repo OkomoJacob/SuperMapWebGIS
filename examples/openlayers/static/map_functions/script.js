@@ -10,8 +10,8 @@ var map, url = "http://localhost:8090/iserver/services/map-Day1_Nairobi_Cadastra
 				.extend([new ol.supermap.control.Logo()]),
 			// onMapCreated
 			view: new ol.View({
-				center: [36.80 , -1.31],
-				zoom: 11.35,
+				center: [36.83 , -1.31],
+				zoom: 15,
 				projection: 'EPSG:4326',
 				// Continous view of the global world map
 				multiWorld: false

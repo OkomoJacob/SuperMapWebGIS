@@ -62,10 +62,10 @@ function clearDraw() {
 
 function fullExtent() {
 	map.setView(new ol.View({
-		center: [101.57, 3.06],
-		zoom: 11,
+		center: [36.80 , -1.31],
+		zoom: 11.35,
 		projection: 'EPSG:4326',
-		multiWorld: true
+		multiWorld: false
 	}));
 }
 
