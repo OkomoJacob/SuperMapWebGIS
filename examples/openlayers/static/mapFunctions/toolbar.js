@@ -1,3 +1,4 @@
+// Define global variables
 var drawLine;
 var drawPolygon;
 var drawLayer = new ol.layer.Vector({
@@ -13,6 +14,7 @@ function measureDistance() {
 	});
 	map.addInteraction(drawLine);
 
+	// Callback event after drawline end is reached
 	drawLine.on('drawend', function(evt) {
 		console.log(evt);
 		var distanceMeasureParam = new SuperMap.MeasureParameters(evt.feature.getGeometry());
@@ -20,7 +22,7 @@ function measureDistance() {
 			measureMode: ""
 		}).measureDistance(distanceMeasureParam, function(serviceResult) {
 			console.log(serviceResult);
-			widgets.alert.showAlert(serviceResult.result.distance.toFixed(2) + 'm', true);
+			widgets.alert.showAlert('Length: ' + serviceResult.result.distance.toFixed(3) + 'm', true);
 		});
 	});
 }
@@ -39,7 +41,7 @@ function measureArea() {
 			measureMode: ""
 		}).measureArea(distanceMeasureParam, function(serviceResult) {
 			console.log(serviceResult);
-			widgets.alert.showAlert(serviceResult.result.area.toFixed(2) + 'm²', true);
+			widgets.alert.showAlert('Area: ' + serviceResult.result.area.toFixed(2) + 'm²', true);
 		});
 	});
 }

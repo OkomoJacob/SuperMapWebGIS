@@ -24,6 +24,6 @@ examples/js
 examples/leaflet
 examples/locales
 examples/mapboxgl
-examples/openlayers/img
+examples/openlayers/static/img
 examples/template
 THIRD-PARTY SOFTWARE OR TECHNOLOGY STATEMENT.md
