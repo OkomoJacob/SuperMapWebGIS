@@ -8,16 +8,10 @@ bin-release/
 .settings/
 
 # Executables
-*.swf
-*.air
-*.ipa
-*.apk
+*.vscode
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
 
-# Dev Environment Common Files
+# Dev Environment iServer Common Files
 dist/
 examples/3dwebgl
 examples/classic
