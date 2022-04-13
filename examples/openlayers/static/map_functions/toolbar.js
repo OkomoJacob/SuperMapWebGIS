@@ -54,10 +54,10 @@ function clearDraw() {
 	resultLayer.getSource().clear(); //clear early query result
 	overlay.setPosition(undefined);
 	map.removeOverlay(overlay);
-	// currentFeature = null;
-	// map.removeInteraction(modify);
-	// map.removeInteraction(snap);
-	// editLayer.getSource().clear();
+	currentFeature = null;
+	map.removeInteraction(modify);
+	map.removeInteraction(snap);
+	editLayer.getSource().clear();
 }
 
 function fullExtent() {
@@ -152,7 +152,8 @@ function clickQuery() {
 			content.innerHTML = contentHTML;
 			overlay.setPosition(evt.feature.values_.geometry.getCoordinates());
 			map.addOverlay(overlay);
-			//currentFeature = feature;
+			// At end of query, assign
+			// currentFeature = feature;
 
 		});
 	});
@@ -222,10 +223,11 @@ $('#keyWordsTable').change(function() {
 			}
 		});
 		contentHTML += "</table>";
+		// 
 		contentHTML +=
-			'<button class="btn btn-primary" style="width:50%" id="edit" onclick="editGeometry()">Edit</button>';
+			'<button class="btn btn-primary" style="width:45%" id="edit" onclick="editGeometry()">Edit</button>';
 		contentHTML +=
-			'<button class="btn btn-primary" style="width:50%" id="submit" onclick="editTable()">Submit</button>';
+			'<button class="btn btn-primary" style="width:45%" id="submit" onclick="editTable()">Submit</button>';
 		content.innerHTML = contentHTML;
 		
 		var featureExtent = feature.values_.geometry.getExtent();
