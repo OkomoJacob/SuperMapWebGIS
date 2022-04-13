@@ -10,12 +10,12 @@ function editTable() {
 			currentFeature.values_[idx] = $("#" + idx + "Input").val();
 		}
 	});
-	console.log(currentFeature);};
-/*
+
+	console.log(currentFeature);
 	var editFeatureParams = new SuperMap.EditFeaturesParameters({
 		features: [currentFeature],
 		dataSourceName: "CadastralData",
-		dataSetName: "building",
+		dataSetName: "Nairobi_Buildings",
 		editType: "update",
 		returnContent: true
 	});
@@ -23,13 +23,13 @@ function editTable() {
 	editFeaturesService.editFeatures(editFeatureParams, function(serviceResult) {
 		console.log(serviceResult);
 		if (serviceResult.result.succeed) {
-			alert("Modify successfully!");
-			layer.getSource().refresh();
+			alert("Modified successfully!");
+			layer.getSource().refresh(); //refresh to later modify the feature
 			clearDraw();
 		}
 	});
 }
-
+/* Edit by geometry*/
 var editSource = new ol.source.Vector();
 let editLayer = new ol.layer.Vector({
 	source: editSource
@@ -42,7 +42,7 @@ function editGeometry() {
 	drawLayer.getSource().clear();
 	resultLayer.getSource().clear();
 	
-	overlay.setOffset([0, overlay.getOffset()[1]-30]);
+	overlay.setOffset([0, overlay.getOffset()[1]-30]); //Double click "Edit" to move the infoWindow
 	
 	modify = new ol.interaction.Modify({
 		source: editSource
@@ -59,9 +59,10 @@ function editGeometry() {
 	modify.on('modifyend', function(evt) {
 		currentFeature = evt.features.array_[0];
 		console.log(currentFeature);
+		console.log(currentFeature);
 	});
 }
-
+/*
 function drawBuilding(){
 	var drawBuilding = new ol.interaction.Draw({
 		source: drawLayer.getSource(),
