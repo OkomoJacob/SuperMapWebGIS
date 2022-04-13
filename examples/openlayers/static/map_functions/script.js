@@ -32,7 +32,7 @@ var map, url = "http://localhost:8090/iserver/services/map-Day1_Nairobi_Cadastra
 			source: new ol.source.TileSuperMapRest({
 				url: url,
 				wrapX: true,
-				cacheEnabled: false
+				cacheEnabled: false //To prevent iServer from storing cached files locally
 			}),
 			projection: 'EPSG:4326'
 		});
