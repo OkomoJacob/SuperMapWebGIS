@@ -62,7 +62,7 @@ function editGeometry() {
 		console.log(currentFeature);
 	});
 }
-/*
+/* Add a new building */
 function drawBuilding(){
 	var drawBuilding = new ol.interaction.Draw({
 		source: drawLayer.getSource(),
@@ -75,6 +75,7 @@ function drawBuilding(){
 		var buildingGeometry = evt.feature.getGeometry();
 		var buildingFeature = new ol.Feature(buildingGeometry);
 		
+		// Assign these 5 attributes to new building
 		buildingFeature.values_.osm_id = $("#osm_id").val();
 		buildingFeature.values_.code = $("#code").val();
 		buildingFeature.values_.fclass = $("#fclass").val();
@@ -85,7 +86,7 @@ function drawBuilding(){
 		var addFeatureParams = new SuperMap.EditFeaturesParameters({
 			features: [buildingFeature],
 			dataSourceName: "CadastralData",
-			dataSetName: "building",
+			dataSetName: "Nairobi_Buildings",
 			editType: "add",
 			returnContent: true
 		});
@@ -101,6 +102,7 @@ function drawBuilding(){
 	});
 }
 
+/* Delete an existing building */
 function deleteBuilding(){
 	var deleteBuilding = new ol.interaction.Draw({
 		source: drawLayer.getSource(),
@@ -113,7 +115,7 @@ function deleteBuilding(){
 		
 		var param = new SuperMap.QueryByGeometryParameters({
 			queryParams: {
-				name: "building@CadastralData"
+				name: "Nairobi_Buildings@CadastralData"
 			},
 			geometry: evt.feature.values_.geometry
 		});
@@ -121,12 +123,12 @@ function deleteBuilding(){
 			var features = (new ol.format.GeoJSON()).readFeatures(serviceResult.result.recordsets[0].features);
 			vectorSource.addFeatures(features);
 			//parseInt(features[0].values_)
-			//console.log();
+			console.log();
 			
 			var deleteFeatureParams = new SuperMap.EditFeaturesParameters({
 				IDs: [parseInt(features[0].values_.SmID)],
 				dataSourceName: "CadastralData",
-				dataSetName: "building",
+				dataSetName: "Nairobi_Buildings",
 				editType: "delete",
 				returnContent: true
 			});
@@ -141,4 +143,3 @@ function deleteBuilding(){
 		});
 	});
 }
-*/
