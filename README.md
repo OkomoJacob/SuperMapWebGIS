@@ -10,6 +10,7 @@ Resources
 6. [iServer Layer Names to Query (Local Host)](http://localhost:8090/iserver/services/map-Day1_Nairobi_Cadastral_Workspace/rest/maps/Day1_Nairobi_Cadatral/layers/Nairobi_Buildings@CadastralData@@Day1_Nairobi_Cadatral.html)
 7. [SuperMap.Vector.Feature: Edit Open Layers](https://iclient.supermap.io/en/web/apis/openlayers.html)
 8. [Tile SuperMap Configs and Settings](https://iclient.supermap.io/en/web/apis/openlayers.html)
+9. [Supermap iClient for 3D WebGL, Quickstart](https://iclient.supermap.io/en/web/index.html)
 
 Step:
 
