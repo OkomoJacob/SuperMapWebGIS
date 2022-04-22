@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+    height:100%; 
+    position: absolute;
+    top: 0;
+}
+/* Side tool bar */
+.toolBar {
+    position: absolute;
+    right: 65px;
+    top: 8px;
+    text-align: center;
+    background: #FFF;
+    /* Level of div */
+    z-index: 1000; 
+    border-radius: 4px;
+}
+
+.sidebar-config-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 360px;
+    padding: 20px;
+    background: #2c2c2c;
+}
+
+.sidebar-config-wrap .panel-group .panel {
+    border-color: transparent;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-config-wrap .panel .panel-heading {
+    background: #383838;
+    color: rgba(255, 255, 255, 0.85);
+    border-color: #383838;
+    position: relative;
+}
+
+.sidebar-config-wrap .panel .panel-heading::before {
+    content: "";
+    height: 50%;
+    width: 2px;
+    background: #3394dc;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    display: block;
+}
+
+.form-group {
+    overflow: hidden;
+}
+
+.sidebar-config-wrap .form-control,
+.sidebar-config-wrap .btn-group {
+    width: 70%;
+    float: right;
+}
+
+.sidebar-config-wrap .form-group label {
+    margin-bottom: 0;
+    line-height: 34px;
+}
+
+.sidebar-config-wrap .btn-group {
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+.sidebar-config-wrap .btn-group button {
+    width: 50%;
+    outline: none;
+}
+
+.sidebar-config-wrap .btn-group button:focus {
+    outline: none;
+}
+
+.sidebar-config-wrap .panel-title a {
+    width: 100%;
+    display: block;
+    text-decoration: none !important;
+    overflow: hidden;
+}
+
+.sidebar-config-wrap .panel-title a span.glyphicon {
+    float: right;
+}
+
+.sidebar-config-wrap .panel-title a[aria-expanded="true"] .glyphicon-chevron-down {
+    display: none;
+}
+
+.sidebar-config-wrap .panel-title a[aria-expanded="false"] .glyphicon-chevron-up {
+    display: none;
+}
+
+.sidebar-config-wrap .submit-btn-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    border-top: 2px solid #323232;
+    text-align: center;
+}
+
+.sidebar-config-wrap #printBtn,
+.sidebar-config-wrap .progress {
+    width: 80%;
+}
+
+.sidebar-config-wrap .progress {
+    margin: 30px auto 0;
+}
+
+/* Pop up to query buildings and land use */
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -150px;
+    width: 300px;
+}
+
+/* Search by keword options */
+.keyWordsOptions {
+    position: absolute;
+    top: 120px;
+    right: 100px;
+    background-color: white;
+    display: none;
+}

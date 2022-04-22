@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Jacob Training</title>
+	<!-- Include the bootstrap and JQuery for Supermap iClient from the javascript/-->
+	<script type="text/javascript" include="bootstrap,jquery,widgets.alert" src="../js/include-web.js"></script>
+	<!-- Include the openlayers source coede for Supermap iClient from the dist/-->
+	<script type="text/javascript" src="../../dist/ol/include-ol.js"></script>
+	<!-- External stying -->
+	<link rel="stylesheet" href="static/css/style.css">
+	<style>
+		/* Linked externally */
+	</style>
+</head>
+
+<body>
+	<div id="map" style="width: 100%;height:100%"></div>
+	<!-- Toolbar div -->
+	<div>
+		<div class="panel panel-primary toolBar" id="toolBar">
+			<div class='panel-body content'>
+				<button type="button" class="btn btn-default" id="clickQuery" onclick="clickQuery()">
+					<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" id="measureDistance" onclick="measureDistance()">
+					<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" id="measureArea" onclick="measureArea()">
+					<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" id="clearDraw" onclick="clearDraw()">
+					<span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" id="fullExtent" onclick="fullExtent()">
+					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" id="search" onclick="showInput()">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+				<!-- An extra button to open 3D scene -->
+				<button type="button" class="btn btn-default" id="search" onclick="openScene()">
+					<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>  
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- Side bar toolbar start-->
+	<div id="printForm" class="sidebar-config-wrap" role="form">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">
+							<span>Landuse</span>
+							<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+						</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="title">Landuse Type</label>
+							<select class="form-control" id="landuseType" style="width: 150px;">
+								<!-- Obtain options from iDesktop attribute table -->
+								<option>cemetery </option>
+								<option>commercial</option>
+								<option>farmland</option>
+								<option>farmyard</option>
+								<option>forest</option>
+								<option>grass</option>
+								<option>health</option>
+								<option>industrial</option>
+								<option>meadow</option>
+								<option>military</option>
+								<option>nature_reserve</option>
+								<option>orchard</option>
+								<option>park</option>
+								<option>quarry</option>
+								<option>recreation_ground</option>
+								<option>residential</option>
+								<option>retail</option>
+								<option>scrub</option>
+							</select>
+						</div>
+					</div>
+					<button class="btn btn-primary" style="width:45%" id="query" onclick="queryLanduse()">Query</button>
+					<button class="btn btn-primary" style="width:45%" id="submit">Submit</button>
+				</div>
+			</div>
+			<!-- Add or Delete building start-->
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="exportOptions">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+							href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							<span>Building</span>
+							<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+						</a>
+					</h4>
+				</div>
+				<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="exportOptions">
+
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="title">osm_id:</label>
+							<input type="text" placeholder="6725692" class="form-control" id="osm_id" />
+						</div>
+						<div class="form-group">
+							<label for="title">code:</label>
+							<input type="text" class="form-control" id="code" value="1500" />
+						</div>
+						<div class="form-group">
+							<label for="title">fclass:</label>
+							<input type="text" class="form-control" id="fclass" value="building" />
+						</div>
+						<div class="form-group">
+							<label for="title">name: </label>
+							<input type="text" class="form-control" id="name" />
+						</div>
+						<div class="form-group">
+							<label for="title">type: </label>
+							<input type="text" placeholder="industrial" class="form-control" id="type" />
+						</div>
+						<button class="btn btn-primary" style="width:45%" onclick="drawBuilding()">Add</button>
+						<button class="btn btn-primary" style="width:45%" onclick="deleteBuilding()">Delete</button>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- Add or Delete building End-->
+		</div>
+	</div>
+	<!-- Side bar toolbar End-->
+	<!-- Pop up window to show the attributes of query result -->
+	<div id="popup" class="ol-popup">
+		<div id="popup-content"></div>
+	</div>
+
+	<!-- Div to search input and control visibility -->
+	<div class="form-group" id="inputPannel" style="position: absolute; top: 80px; right: 100px; display: none;">
+		<input type="keyWords" class="form-control" id="keyWordsInput" placeholder="Please input key words">
+	</div>
+
+	<!-- Search by Key words -->
+	<div id="keyWordsOptions" class="keyWordsOptions">
+		<select multiple class="form-control" id="keyWordsTable"></select>
+	</div>
+	<!-- External JS start-->
+	<script type="text/javascript" src="static/map_functions/script.js"></script>
+	<script type="text/javascript" src="static/map_functions/toolbar.js"></script>
+	<script type="text/javascript" src="static/map_functions/query_land_use.js"></script>
+	<script type="text/javascript" src="static/map_functions/edit.js"></script>
+	<script type="text/javascript" src="static/index.js"></script>
+	<!-- External JS End-->
+</body>
+
+</html>
