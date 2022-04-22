@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastral Management 3D</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/widgets.css" rel="stylesheet">
+	<link href="css/pretty.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/require.min.js" data-main="js/main"></script>
+</head>
+
+<body>
+	<!-- 3D map lies here -->
+	<div id="cesiumContainer" style="width:100%; height:100%"></div>
+	<!-- pop up -->
+	<div id="bubble" class="bubble" style="bottom:0;left:82%;display:none;">
+		<div id="tools" style="text-align : right">
+			<span style="color: rgb(95, 74, 121);padding: 5px;position: absolute;left: 10px;top: 4px;">Attributes</span>
+			<span class="fui-export" id="bubblePosition" style="color: darkgrey; padding:5px" title="Side"></span>
+			<span class="fui-cross" title="Close" id="close" style="color: darkgrey;padding:5px"></span>
+		</div>
+		<div style="overflow-y:scroll;height:150px" id="tableContainer">
+			<table id="tab"></table>
+		</div>
+	</div>
+	<script type = "text/javascript">
+		/*  Quickstart resources at: https://iclient.supermap.io/en/web/index.html
+			specific resources at  : http://support.supermap.com.cn:8090/webgl/examples/webgl/editor.html#S3MTiles_BIM 
+			From class cesiumContainer 
+		*/
+		var viewer;
+		// onPageCreated() => initialize Cesium;
+		function onload(Cesium) {
+
+			var viewer = new Cesium.Viewer('cesiumContainer');
+
+			/* 1. Add 3D Bingmap image layer as base map on map load*/
+			viewer.imageryLayers.addImageryProvider(new Cesium.BingMapsImageryProvider({
+				url: 'https://dev.virtualearth.net',
+				mapStyle: Cesium.BingMapsStyle.AERIAL,
+				key: "AkOyUpgDCoz063AWW1WfHnxp5222UBdxLOp1XvRv0tuebQnr2S7UcZkiLgME7gX0"
+			}));
+
+			var scene = viewer.scene;
+			// Content of the scene
+			var promise = scene.open("http://localhost:8090/iserver/services/3D-CadastralWorkSpace/rest/realspace");
+
+			/* 2. Set data service url */
+			Cesium.when(promise, function (layers) {
+				scenes / CadastralScene_test / layers
+				// Layers: http://localhost:8090/iserver/services/3D-CadastralWorkSpace/rest/realspace/scenes/CadastralScene_test/layers
+				var layer = scene.layers.find('ExtractData_test@CadastralData');
+				//console.log(scene);
+				console.log(layer);
+				layer.setQueryParameter({
+					// DataUrl same as 2D dataUrl. 
+					url: "http://localhost:8090/iserver/services/data-CadastralWorkSpace/rest/data",
+					dataSourceName: "CadastralData",
+					dataSetName: 'ExtractData_test',
+					isMerge: true,
+					keyWord: 'SmID' //Query keyword
+				});
+				datainfo(layer);
+			}, function (e) {
+				// ? Error code != 200
+				if (widget._showRenderLoopErrors) {
+					var title = 'Failed to load SCP, please check whether the network connection status or URL address and try again.';
+					widget.showErrorPanel(title, undefined, e);
+				}
+			});
+			// Pop up container
+			var infoboxContainer = document.getElementById("bubble");
+			viewer.customInfobox = infoboxContainer;
+
+			/* 3. Click object to query object properties */
+			var table = document.getElementById("tab");
+			// When a table element is clicked:
+			viewer.pickEvent.addEventListener(function (feature) {
+				console.log(feature);
+				$("#bubble").show();
+				for (i = table.rows.length - 1; i > -1; i--) {
+					table.deleteRow(i);
+				}
+				for (var key in feature) {
+					var newRow = table.insertRow();
+					var cell1 = newRow.insertCell();
+					var cell2 = newRow.insertCell();
+					cell1.innerHTML = key;
+					cell2.innerHTML = feature[key];
+				}
+			});
+			/*The click function of our pop-up table*/
+			$("#bubblePosition").click(function () {
+				if ($("#bubblePosition").hasClass("fui-export")) {
+					viewer.customInfobox = undefined;
+					$("#bubble").removeClass("bubble").addClass("float");
+					$("#bubblePosition").removeClass("fui-export").addClass("fui-bubble");
+					$("#bubblePosition")[0].title = "Popup";
+					$("#bubble").css({ 'left': '82%', 'bottom': '45%' });
+					$("#tableContainer").css({ 'height': '350px' });
+				}
+				else if ($("#bubblePosition").hasClass("fui-bubble")) {
+					$("#bubble").removeClass("float").addClass("bubble");
+					$("#bubblePosition").removeClass("fui-bubble").addClass("fui-export");
+					$("#bubblePosition")[0].title = "Side";
+					$("#tableContainer").css({ 'height': '150px' });
+					viewer.customInfobox = infoboxContainer;
+				}
+			});
+			// Hide the buble
+			$("#close").click(function () {
+				$("#bubble").hide();
+			});
+		}
+
+	</script>
+</body>
+
+</html>
