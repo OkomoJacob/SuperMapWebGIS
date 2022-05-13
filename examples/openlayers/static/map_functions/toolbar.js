@@ -115,7 +115,7 @@ function clickQuery() {
 
 		var param = new SuperMap.QueryByGeometryParameters({
 			queryParams: {
-				name: "Nairobi_Buildings@CadastralData"
+				name: "building@CadastralData"
 			},
 			geometry: evt.feature.values_.geometry
 		});
@@ -247,5 +247,5 @@ $('#keyWordsTable').change(function() {
 })
 
 function openScene(){
-	window.open("http://localhost:8090/iClient3D/examples/webgl/Cadastral3D.html");
+	window.open("http://localhost:8090/iserver/services/map-CadastralWorkSpace/rest/maps/CadastralMap.ol3");
 }
