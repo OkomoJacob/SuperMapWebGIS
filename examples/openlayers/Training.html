@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="../../dist/ol/include-ol.js"></script>
 	<!-- External stying -->
 	<link rel="stylesheet" href="static/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<!-- Don't store cache files in memory -->
 	<meta http-equiv='cache-control' content='no-cache'>
 	<meta http-equiv='expires' content='0'>
@@ -54,9 +55,48 @@
 			</div>
 		</div> -->
 	<!-- </div> -->
+	<nav>
+		<img class="logo" src="my_images/supermapLogo1sm.png" alt="">
+		<ul>
+			<li><a class="active" href="#">Cadastral Map</a></li>
+			<li>
+				<a href="#">Map Tools
+					<i class="fas fa-caret-down"></i>
+				</a>
+				<ul>
+					<li><a href="#"><i class="glyphicon glyphicon-info-sign" id="clickQuery" onclick="clickQuery()" aria-hidden="true"></i> Select</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tag" id="measureDistance" onclick="measureDistance()" aria-hidden="true"></i> Measure Distance</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tags" id="measureArea" onclick="measureArea()" aria-hidden="true"></i> Measure Area</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-erase" id="clearDraw" onclick="clearDraw()" aria-hidden="true"></i> Clear Content</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-fullscreen" id="fullExtent" onclick="fullExtent()" aria-hidden="true"></i> Full Extent</a>
+					</li>
+					<li><a href="#"><i class="glyphicon glyphicon-search" id="search" onclick="showInput()" aria-hidden="true"></i> Quick Search</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Landuse
+					<i class="fas fa-caret-down"></i>
+				</a>
+				<ul>
+					<li><a href="#">LandUse1</a></li>
+					<li><a id="printForm" class="sidebar-config-wrap" role="form" href="#">LandUse2</a></li>
+					<li>
+						<a href="#">More
+							<i class="fas fa-caret-right"></i>
+						</a>
+						<ul>
+							<li><a href="#">Upcoming</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="https://www.giscontest.com/en/">Join Contest</a></li>
+			<li><a href="https://www.supermap.com/en-us/about/?79_1.html">Questions?, Contact</a></li>
+		</ul>
+	</nav>
 	<div id="map" style="width: 100%;height:100%"></div>
 	<!-- Toolbar div -->
-	<div>
+	<!-- <div>
 		<div class="panel panel-primary toolBar" id="toolBar">
 			<div class='panel-body content'>
 				<button type="button" class="btn btn-default" id="clickQuery" onclick="clickQuery()">
@@ -82,8 +122,8 @@
 				</button>
 			</div>
 		</div>
-	</div>
-	<!-- Side bar toolbar start-->
+	</div> -->
+	<!-- Side bar toolbar start -->
 	<div id="printForm" class="sidebar-config-wrap" role="form">
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default">
@@ -102,7 +142,7 @@
 						<div class="form-group">
 							<label for="title">Landuse Type</label>
 							<select class="form-control" id="landuseType" style="width: 150px;">
-								<!-- Obtain options from iDesktop attribute table -->
+								Obtain options from iDesktop attribute table
 								<option>cemetery </option>
 								<option>commercial</option>
 								<option>farmland</option>
@@ -128,7 +168,7 @@
 					<button class="btn btn-primary" style="width:45%" id="submit">Submit</button>
 				</div>
 			</div>
-			<!-- Add or Delete building start-->
+			Add or Delete building start
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="exportOptions">
 					<h4 class="panel-title">
@@ -165,15 +205,26 @@
 						</div>
 						<button class="btn btn-primary" style="width:45%" onclick="drawBuilding()">Add</button>
 						<button class="btn btn-primary" style="width:45%" onclick="deleteBuilding()">Delete</button>
-
 					</div>
 
 				</div>
 			</div>
-			<!-- Add or Delete building End-->
+			Add or Delete building End
 		</div>
 	</div>
 	<!-- Side bar toolbar End-->
+	<!-- Side bar toolbar start -->
+	<div id="mySidebar" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	  </div>
+	  
+	  <div id="main-side">
+		<button class="openbtn" onclick="openNav()">☰ Query</button>
+	  </div>
 	<!-- Pop up window to show the attributes of query result -->
 	<div id="popup" class="ol-popup">
 		<div id="popup-content"></div>
