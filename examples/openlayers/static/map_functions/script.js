@@ -38,3 +38,14 @@ var layer = new ol.layer.Tile({
 });
 map.addLayer(layer);
 map.addControl(new ol.supermap.control.ScaleLine());
+
+/* Toggle Side bar */
+function openNav() {
+	document.getElementById("mySidebar").style.width = "250px";
+	document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+	document.getElementById("mySidebar").style.width = "0";
+	document.getElementById("main").style.marginLeft = "0";
+}
