@@ -56,7 +56,9 @@
 		</div> -->
 	<!-- </div> -->
 	<nav>
-		<img class="logo" src="my_images/supermapLogo1sm.png" alt="">
+		<!-- Image Logo
+		<img class="logo" src="my_images/supermapLogo1sm.png" alt=""> -->
+		<label class="logo">SuperMap</label>
 		<ul>
 			<li><a class="active" href="#">Cadastral Map</a></li>
 			<li>
@@ -64,13 +66,19 @@
 					<i class="fas fa-caret-down"></i>
 				</a>
 				<ul>
-					<li><a href="#"><i class="glyphicon glyphicon-info-sign" id="clickQuery" onclick="clickQuery()" aria-hidden="true"></i> Select</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-tag" id="measureDistance" onclick="measureDistance()" aria-hidden="true"></i> Measure Distance</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-tags" id="measureArea" onclick="measureArea()" aria-hidden="true"></i> Measure Area</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-erase" id="clearDraw" onclick="clearDraw()" aria-hidden="true"></i> Clear Content</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-fullscreen" id="fullExtent" onclick="fullExtent()" aria-hidden="true"></i> Full Extent</a>
+					<li><a href="#"><i class="glyphicon glyphicon-info-sign" id="clickQuery" onclick="clickQuery()"
+								aria-hidden="true"></i> Select</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tag" id="measureDistance" onclick="measureDistance()"
+								aria-hidden="true"></i> Measure Distance</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tags" id="measureArea" onclick="measureArea()"
+								aria-hidden="true"></i> Measure Area</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-erase" id="clearDraw" onclick="clearDraw()"
+								aria-hidden="true"></i> Clear Content</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-fullscreen" id="fullExtent" onclick="fullExtent()"
+								aria-hidden="true"></i> Full Extent</a>
 					</li>
-					<li><a href="#"><i class="glyphicon glyphicon-search" id="search" onclick="showInput()" aria-hidden="true"></i> Quick Search</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-search" id="search" onclick="showInput()"
+								aria-hidden="true"></i> Quick Search</a></li>
 				</ul>
 			</li>
 			<li>
@@ -126,7 +134,15 @@
 		</div>
 	</div> -->
 	<!-- Side bar toolbar start -->
+	<div id="mySidebar" class="sidebar">
+		<!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> -->
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
 	<div id="printForm" class="sidebar-config-wrap" role="form">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingOne">
@@ -170,7 +186,7 @@
 					<button class="btn btn-primary" style="width:45%" id="submit">Submit</button>
 				</div>
 			</div>
-			Add or Delete building start
+			<!-- Add or Delete building start -->
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="exportOptions">
 					<h4 class="panel-title">
@@ -211,22 +227,14 @@
 
 				</div>
 			</div>
-			Add or Delete building End
+			<!-- Add or Delete building End -->
 		</div>
 	</div>
 	<!-- Side bar toolbar End-->
-	<!-- Side bar toolbar start -->
-	<div id="mySidebar" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="#">About</a>
-		<a href="#">Services</a>
-		<a href="#">Clients</a>
-		<a href="#">Contact</a>
-	  </div>
-	  
-	  <div id="main-side">
+
+	<div id="main-side">
 		<button class="openbtn" onclick="openNav()">☰ Query</button>
-	  </div>
+	</div>
 	<!-- Pop up window to show the attributes of query result -->
 	<div id="popup" class="ol-popup">
 		<div id="popup-content"></div>
