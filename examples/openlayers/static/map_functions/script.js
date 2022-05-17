@@ -41,11 +41,11 @@ map.addControl(new ol.supermap.control.ScaleLine());
 
 /* Toggle Side bar */
 function openNav() {
-	document.getElementById("mySidebar").style.width = "250px";
-	document.getElementById("main").style.marginLeft = "250px";
+	document.getElementById("printForm").style.width = "250px";
+	document.getElementById("main-side").style.marginRight = "250px";
 }
 
 function closeNav() {
-	document.getElementById("mySidebar").style.width = "0";
-	document.getElementById("main").style.marginLeft = "0";
+	document.getElementById("printForm").style.width = "0px";
+	document.getElementById("main-side").style.marginRight = "0px";
 }
