@@ -1,10 +1,9 @@
-
 * {
     margin: 0;
     padding: 0;
 }
 
-.main{
+.main {
     width: 100%;
     /* height: 100%; */
     /* background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(./my_images/supermapLogo1sm.png); */
@@ -12,6 +11,7 @@
     /* background-size: cover; */
     /* height: 100vh; */
 }
+
 /*
 .navbar {
     width: 100vw;
@@ -109,35 +109,48 @@ ul li a:hover{
     zoom: 180%;
 }
 */
-/* 
-nav .logo{
+
+nav .logo {
     color: rgb(214, 39, 39);
     font-size: 33px;
     font-weight: bold;
     line-height: 70px;
     padding-left: 110px;
-  } */
+    font-style: italic;
+    font-family: serif;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 5.2%;
+}
+
+/* Image Logo
 .logo{
     padding: 0px 0px 0px 70px;
     width: 150px;
     height: auto;
-}
-  nav{
+} */
+nav {
     height: 80px;
     background: #063247;
-    box-shadow: 0 3px 15px rgba(0,0,0,.4);
-  }
-  nav ul{
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .4);
+}
+
+nav ul {
     float: right;
     margin-right: 30px;
-  }
-  nav ul li{
+}
+
+nav ul li {
     display: inline-block;
     list-style: none;
     position: relative;
     z-index: 1;
-  }
-  nav ul li a{
+}
+
+nav ul li a {
     color: white;
     display: block;
     padding: 0 15px;
@@ -145,54 +158,62 @@ nav .logo{
     font-size: 18px;
     background: #063247;
     transition: .5s;
-  }
-  nav ul li a:hover,
-  nav ul li a.active{
+}
+
+nav ul li a:hover,
+nav ul li a.active {
     color: #23dbdb;
-  }
-  nav ul ul{
+}
+
+nav ul ul {
     position: absolute;
     top: 85px;
     border-top: 3px solid #23dbdb;
     opacity: 0;
     visibility: hidden;
-  }
-  nav ul li:hover > ul{
+}
+
+nav ul li:hover>ul {
     top: 70px;
     opacity: 1;
     visibility: visible;
     transition: .3s linear;
-  }
-  nav ul ul li{
+}
+
+nav ul ul li {
     width: 230px;
     display: list-item;
     position: relative;
     border: 1px solid #042331;
     border-top: none;
-  }
-  nav ul ul li a{
+}
+
+nav ul ul li a {
     line-height: 22px;
-  }
-  nav ul ul ul{
+}
+
+nav ul ul ul {
     border-top: none;
-  }
-  nav ul ul ul li{
+}
+
+nav ul ul ul li {
     position: relative;
     top: -70px;
     left: 150px;
-  }
-  nav ul ul li a i{
+}
+
+nav ul ul li a i {
     margin-left: 8px;
     box-sizing: 3px;
-  }
+}
 
-.newsearch{
+.newsearch {
     width: 300px;
     float: right;
     margin-right: 10px;
 }
 
-.srch{
+.srch {
     font-family: 'Times New Roman';
     width: 200px;
     height: 40px;
@@ -208,7 +229,7 @@ nav .logo{
     border-top-left-radius: 16px;
 }
 
-.new-btn{
+.new-btn {
     width: 100px;
     height: 40px;
     background: #ff7200;
@@ -223,11 +244,12 @@ nav .logo{
     border-bottom-left-radius: 0px;
 }
 
-.new-btn:focus{
+.new-btn:focus {
     outline: none;
     /* zoom: 120%; */
 }
-.srch:focus{
+
+.srch:focus {
     outline: none;
 }
 
@@ -242,7 +264,7 @@ body {
     top: 0;
 }
 
- /* Side tool bar  */
+/* Side tool bar  */
 .toolBar {
     position: absolute;
     right: 363px;
@@ -256,54 +278,54 @@ body {
 
 /* New Toggle Side Bar */
 
-.sidebar {
+/* .sidebar {
     height: 100%;
     width: 0;
-    position: relative;
-    z-index: 0;
-    top: 0;
-    left: 0;
+    position: fixed;
+    z-index: 1;
+    top: 64px;
+    right: 0;
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-  }
-  
-  .sidebar a {
+  } */
+
+/* .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-  }
-  
-  .sidebar a:hover {
+  } */
+
+/* .sidebar a:hover {
     color: #f1f1f1;
-  }
-  
-  .sidebar .closebtn {
+  } */
+
+/* .sidebar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-  }
-  
-  .openbtn {
+  } */
+
+.openbtn {
     font-size: 20px;
     cursor: pointer;
     background-color: rgb(29, 201, 231);
     color: white;
     padding: 10px 15px;
     border: none;
-  }
-  
-  .openbtn:hover {
+}
+
+.openbtn:hover {
     background-color: #444;
-  }
-  
-  #main-side {
+}
+
+#main-side {
     transition: margin-left .5s;
     position: absolute;
     top: 80px;
@@ -311,21 +333,64 @@ body {
     float: right;
     height: 10px;
     padding: 0 0 0 -10px;
-  }
+}
 
 /* New Toggle Side Bar */
 
 .sidebar-config-wrap {
-    position: absolute;
+    /* position: absolute; */
     top: 79px;
     right: 0;
     height: 80vh;
     width: 360px;
     padding: 20px;
-    padding-top: 12px;
+    /* padding-top: 12px; */
     background: #2c2c2c;
-    visibility: hidden;
+    /* visibility: hidden; */
+    /* height: 100%; */
+    /* width: 0; */
+    position: fixed;
+    z-index: 0;
+    /* top: 64px; */
+    /* background-color: #111; */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    /* visibility: hidden; */
 }
+.sidebar-config-wrap a {
+    padding: 8px 8px 8px 32px;
+    /* text-decoration: none; */
+    font-size: 18px;
+    /* color: #818181; */
+    /* display: block; */
+    transition: 0.3s;
+  }
+
+.sidebar-config-wrap a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar-config-wrap .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(29, 201, 231);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
 
 .sidebar-config-wrap .panel-group .panel {
     border-color: transparent;
