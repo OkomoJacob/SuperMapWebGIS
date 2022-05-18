@@ -1,6 +1,16 @@
 # SuperMap WebGIS Developement Course
 
-Resources
+### Build UI
+#### Basic Mapping/Data Tools
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/home1.PNG"><br>
+#### Basic Drop Down Query Interface
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/landuse.png"><br>
+#### Measure Distance on Map
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/measure%20distance.png"><br>
+#### Measure Spatial Area on Map
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/measure_area.PNG"><br>
+
+### Resources
 1. [Download iServer](https://www.supermap.com/en-us/html/down.html): You can scroll and choose your prefred OS and Version here(Latest release recommended)
 2. [Download Supermap iClient Javascript](https://products.supermap.com/Packages/Eng10i2021/EN/iClient/supermap-iclient-1020.zip): You can scroll and choose your prefred OS and Version here(Latest release recommended
 3. [W3Schools, embedding pages](https://www.w3schools.com/js/js_whereto.asp)
@@ -11,8 +21,3 @@ Resources
 7. [SuperMap.Vector.Feature: Edit Open Layers](https://iclient.supermap.io/en/web/apis/openlayers.html)
 8. [Tile SuperMap Configs and Settings](https://iclient.supermap.io/en/web/apis/openlayers.html)
 9. [Supermap iClient for 3D WebGL, Quickstart](https://iclient.supermap.io/en/web/index.html)
-
-Step:
-
-If the map doesn't show(You see awhite background, add these padding styles:
-
