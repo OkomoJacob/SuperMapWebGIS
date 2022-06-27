@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKUAT DEMO</title>
+    <!-- http://localhost:8090/supermap-iclient-1020/examples/openlayers/Training.html -->
+	<!-- Include the bootstrap and JQuery for Supermap iClient from the javascript/-->
+	<script type="text/javascript" include="bootstrap,jquery,widgets.alert" src="../js/include-web.js"></script>
+	<!-- Include the openlayers source coede for Supermap iClient from the dist/-->
+	<script type="text/javascript" src="../../dist/ol/include-ol.js"></script>
+	<!-- External stying -->
+	<link rel="stylesheet" href="static/css/jkuat_style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<!-- Don't store cache files in memory -->
+	<meta http-equiv='cache-control' content='no-cache'>
+	<meta http-equiv='expires' content='0'>
+	<meta http-equiv='pragma' content='no-cache'>
+	<style>
+		/* Linked externally */
+	</style>
+</head>
+<body>
+    <nav>
+		<!-- Image Logo
+		<img class="logo" src="my_images/supermapLogo1sm.png" alt=""> -->
+		<label class="logo">SuperMap</label>
+		<ul>
+			<li><a class="active" href="#">Cadastral Map</a></li>
+			<li>
+				<a href="#">Map Tools
+					<i class="fas fa-caret-down"></i>
+				</a>
+				<ul>
+					<li><a href="#"><i class="glyphicon glyphicon-info-sign" id="clickQuery" onclick="clickQuery()"
+								aria-hidden="true"></i> Select</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tag" id="measureDistance" onclick="measureDistance()"
+								aria-hidden="true"></i> Measure Distance</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-tags" id="measureArea" onclick="measureArea()"
+								aria-hidden="true"></i> Measure Area</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-erase" id="clearDraw" onclick="clearDraw()"
+								aria-hidden="true"></i> Clear Content</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-fullscreen" id="fullExtent" onclick="fullExtent()"
+								aria-hidden="true"></i> Full Extent</a>
+					</li>
+					<li><a href="#"><i class="glyphicon glyphicon-search" id="search" onclick="showInput()"
+								aria-hidden="true"></i> Quick Search</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Landuse
+					<i class="fas fa-caret-down"></i>
+				</a>
+				<ul>
+					<li><a href="#">LandUse1</a></li>
+					<li><a id="printForm" class="sidebar-config-wrap" role="form" href="#">LandUse2</a></li>
+					<li>
+						<a href="#">More
+							<i class="fas fa-caret-right"></i>
+						</a>
+						<ul>
+							<li><a href="#">Upcoming</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="https://www.giscontest.com/en/">Join Contest</a></li>
+			<li><a href="https://www.supermap.com/en-us/about/?79_1.html">Questions?, Contact</a></li>
+		</ul>
+	</nav>
+    
+</body>
+</html>
