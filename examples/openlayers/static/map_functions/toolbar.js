@@ -115,7 +115,7 @@ function clickQuery() {
 
 		var param = new SuperMap.QueryByGeometryParameters({
 			queryParams: {
-				name: "building@CadastralData"
+				name: "building@CadastralData" //buildings@worksapceNe
 			},
 			geometry: evt.feature.values_.geometry
 		});
