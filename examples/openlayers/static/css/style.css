@@ -5,110 +5,7 @@
 
 .main {
     width: 100%;
-    /* height: 100%; */
-    /* background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(./my_images/supermapLogo1sm.png); */
-    /* background-position: center; */
-    /* background-size: cover; */
-    /* height: 100vh; */
 }
-
-/*
-.navbar {
-    width: 100vw;
-    height: 75px;
-    margin: auto;
-    position: fixed;
-    padding-top: 10px;
-    box-shadow: 0 0 10px #412491;
-}  
-
-.icon{
-    width: 200px;
-    float: left;
-    height: 70px;
-    margin-top: -18px;
-    margin-left: -10px;
-    font-weight: bold;
-}
-.logo{
-    color: red;
-    font-size: 35px;
-    font-family: Arial;
-    padding-left: 0px;
-    float: left;
-    padding-top: 10px;
-    margin-top: 5px;
-}
-.menu{
-    width: 400px;
-    float: left;
-    height: 70px;
-    padding-left: 100px;
-    
-}
-
-ul{
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: right;
-}
-
-ul li{
-    list-style: none;
-    margin-left: 62px;
-    margin-top: 27px;
-    font-size: 14px;
-    gap: 2rem;
-    margin: 0 2rem;
-    font-weight: bold;
-    position: relative;
-    padding: 0rem 1rem;
-    cursor: pointer;
-    display: flex;
-}
-
-ul li a{
-    text-decoration: none;
-    color: hsl(195, 100%, 99%);
-    font-family: Arial;
-    font-weight: bold;
-    transition: 0.3 ease-in-out;
-}
-.nav_dropdown{
-    position: absolute;
-    top: 4rem;
-    left: -1rem;
-    box-shadow: 0 0 10px #ff7200;
-    background-color: white;
-    border-radius: 8px;
-    width: 12rem; 
-    padding: 1rem; 
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    opacity: 0;
-    z-index: 1000px;
-    visibility: hidden;
-    transition: opacity 200ms ease-in-out;
-}
-.nav_dropdown li{
-    list-style: none;
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          transition: background-color 200ms ease-in-out;
-}
-.nav_dropdown li:hover{
-    background-color: #fce4ec
-}
-.nav_dropdown li:focus{
-    background-color: #fce4ec
-}
-ul li a:hover{
-    color: #ff7200;
-    zoom: 180%;
-}
-*/
 
 nav .logo {
     color: rgb(214, 39, 39);
@@ -275,42 +172,6 @@ body {
     z-index: 1000;
     border-radius: 4px;
 }
-
-/* New Toggle Side Bar */
-
-/* .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 64px;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  } */
-
-/* .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  } */
-
-/* .sidebar a:hover {
-    color: #f1f1f1;
-  } */
-
-/* .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  } */
 
 .openbtn {
     font-size: 20px;
@@ -506,4 +367,12 @@ body {
     right: 100px;
     background-color: white;
     display: none;
+}
+#preloader{
+    background: #000 url(../../my_images/globe_loading.gif) no-repeat center center;
+    background-size: 30%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 }
