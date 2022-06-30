@@ -6,3 +6,5 @@
 
 // var express = require('express');
 // app.use("/static", express.static('./static/'));
+
+    //MERN STACK
