@@ -49,7 +49,7 @@ function closeNav() {
 	document.getElementById("printForm").style.width = "0px";
 	document.getElementById("main-side").style.marginRight = "0px";
 }
-// Landing page loader
+
 var loader = document.getElementById("preloader");
 // Load Event
 window.addEventListener("load", function(){
