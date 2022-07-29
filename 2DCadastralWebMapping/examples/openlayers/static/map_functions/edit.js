@@ -1,5 +1,5 @@
 var currentFeature;
-var dataUrl = "http://localhost:8090/iserver/services/data-Day1_Nairobi_Cadastral_Workspace/rest/data";
+var dataUrl = "http://localhost:8090/iserver/services/data-CadastralWorkSpace/rest/data";
 
 function editTable() {
 	// console.log(currentFeature);
@@ -15,7 +15,7 @@ function editTable() {
 	var editFeatureParams = new SuperMap.EditFeaturesParameters({
 		features: [currentFeature],
 		dataSourceName: "CadastralData",
-		dataSetName: "Nairobi_Buildings",
+		dataSetName: "building",
 		editType: "update",
 		returnContent: true
 	});
@@ -86,7 +86,7 @@ function drawBuilding(){
 		var addFeatureParams = new SuperMap.EditFeaturesParameters({
 			features: [buildingFeature],
 			dataSourceName: "CadastralData",
-			dataSetName: "Nairobi_Buildings",
+			dataSetName: "building",
 			editType: "add",
 			returnContent: true
 		});
@@ -115,7 +115,7 @@ function deleteBuilding(){
 		
 		var param = new SuperMap.QueryByGeometryParameters({
 			queryParams: {
-				name: "Nairobi_Buildings@CadastralData"
+				name: "building@CadastralData"
 			},
 			geometry: evt.feature.values_.geometry
 		});
@@ -128,7 +128,7 @@ function deleteBuilding(){
 			var deleteFeatureParams = new SuperMap.EditFeaturesParameters({
 				IDs: [parseInt(features[0].values_.SmID)],
 				dataSourceName: "CadastralData",
-				dataSetName: "Nairobi_Buildings",
+				dataSetName: "building",
 				editType: "delete",
 				returnContent: true
 			});

@@ -4,7 +4,7 @@ function queryLanduse() {
 	var selectedType = $('#landuseType').val();
 	var param = new SuperMap.QueryBySQLParameters({
 		queryParams: {
-			name: "Nairobi_Buildings@CadastralData",
+			name: "building@CadastralData",
 			attributeFilter: "fclass = '"+selectedType +"'"
 		}
 	});

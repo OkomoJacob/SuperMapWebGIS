@@ -4,14 +4,27 @@
 ## Some Results
 ### Homepage
 <img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/examples/openlayers/snips/homepage.PNG"><br>
+
 ### Measure distance
 <img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/examples/openlayers/snips/distance.PNG"><br>
 
+### Build UI
+#### Basic Mapping/Data Tools
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/home1.PNG"><br>
+
+#### Basic Drop Down Query Interface
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/landuse.png"><br>
+
+#### Measure Distance on Map
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/measure%20distance.png"><br>
+
+#### Measure Spatial Area on Map
+<img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/snips/measure_area.PNG"><br>
+
+### Resources
 ### Measure area
 <img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/examples/openlayers/snips/meaurearea.PNG"><br>
-### Inspect Aattributes of a Feature e.g Building
 <img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/examples/openlayers/snips/inspect.PNG"><br>
-### Modify/Edit/Add/Delete a feature
 <img src = "https://github.com/OkomoJacob/SuperMapWebGIS/blob/dev/examples/openlayers/snips/modify.PNG"><br>
 
 ## Resources
@@ -24,5 +37,6 @@
 6. [iServer Layer Names to Query (Local Host)](http://localhost:8090/iserver/services/map-Day1_Nairobi_Cadastral_Workspace/rest/maps/Day1_Nairobi_Cadatral/layers/Nairobi_Buildings@CadastralData@@Day1_Nairobi_Cadatral.html)
 7. [SuperMap.Vector.Feature: Edit Open Layers](https://iclient.supermap.io/en/web/apis/openlayers.html)
 8. [Tile SuperMap Configs and Settings](https://iclient.supermap.io/en/web/apis/openlayers.html)
-9. [OSM Open Administartive data](https://download.geofabrik.de/)
-10. [Download DIVA GIS Data](https://www.diva-gis.org/gdata)
+9. [Supermap iClient for 3D WebGL, Quickstart](https://iclient.supermap.io/en/web/index.html)
+10. [OSM Open Administartive data](https://download.geofabrik.de/)
+11. [Download DIVA GIS Data](https://www.diva-gis.org/gdata)
