@@ -10,8 +10,8 @@ map = new ol.Map({
 		.extend([new ol.supermap.control.Logo()]),
 	// onMapCreated
 	view: new ol.View({
-		center: [36.83, -1.31],
-		zoom: 15,
+		center: [36.97, -1.33],
+		zoom: 11,
 		projection: 'EPSG:4326',
 		// Continous view of the global world map
 		multiWorld: false
