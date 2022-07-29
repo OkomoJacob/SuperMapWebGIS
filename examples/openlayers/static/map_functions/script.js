@@ -49,3 +49,9 @@ function closeNav() {
 	document.getElementById("printForm").style.width = "0px";
 	document.getElementById("main-side").style.marginRight = "0px";
 }
+
+var loader = document.getElementById("preloader");
+// Load Event
+window.addEventListener("load", function(){
+	loader.style.display = "none";
+})
